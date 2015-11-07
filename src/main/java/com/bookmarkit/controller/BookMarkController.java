@@ -1,8 +1,8 @@
 package com.bookmarkit.controller;
 
-import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,20 +10,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bookmarkit.model.User;
  
 @Controller
-@RequestMapping(value = "/register")
 public class BookMarkController {
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index() {
+	    return "index";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(Model model) {
+	    return "login";
+	}
  
-    @RequestMapping(method = RequestMethod.GET)
-    public String viewRegistration(Map<String, Object> model) {
+    @RequestMapping(method = RequestMethod.GET, value = "/register")
+    public String viewRegistration(Model model) {
         User userForm = new User();    
-        model.put("userForm", userForm);
+        model.addAttribute("userForm", userForm);
          
         return "register";
     }
      
     @RequestMapping(method = RequestMethod.POST)
     public String processRegistration(@ModelAttribute("userForm") User user,
-            Map<String, Object> model) {
+            Model model) {
          
         // registration logic here
          

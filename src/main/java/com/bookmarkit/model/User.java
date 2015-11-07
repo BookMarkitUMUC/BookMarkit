@@ -2,6 +2,11 @@ package com.bookmarkit.model;
  
 public class User {
 	
+	private String username;
+    private String password;
+    
+    private String email;
+	
     public String getUsername() {
 		return username;
 	}
@@ -20,9 +25,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	private String username;
-    private String password;
-    private String email;
+
  
 
 }
